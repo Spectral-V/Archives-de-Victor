@@ -34,19 +34,21 @@
     border-bottom: 1px solid #1a1a1a;
   }
 
-  h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 40px;
+  .title-wrap {
     text-align: center;
-    color: #1a1a1a;
     margin: 26px 0 6px 0;
     padding-bottom: 18px;
     border-bottom: 4px solid #1a1a1a;
   }
+  .title-img {
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+  }
 
   @media screen and (max-width: 480px) {
     .page { padding: 18px 18px 40px 18px; }
-    h1 { font-size: 30px; }
+    .title-img { max-width: 300px; }
     .bandeau { font-size: 9.5px; }
   }
 
@@ -217,13 +219,15 @@
       <span>Lettres Victorieuses</span>
     </div>
 
-    <h1>Les Archives de Victor</h1>
+    <div class="title-wrap">
+      <img src="img/title.png" alt="Les Archives de Victor" class="title-img">
+    </div>
     <p class="subtitle">Tous les numéros, dans l'ordre</p>
 
     <ul class="archives">
-      <li><a href="#lettre-juillet">Lettre de Juillet — by Victor Murris</a></li>
-      <li><a href="#lettre-aout">Lettre d'Août — by Victor Murris</a></li>
-      <li><a href="#lettre-septembre">Lettre de Septembre — by Victor Murris</a></li>
+      <li><a href="#lettre-juillet">Lettre de Juillet </a></li>
+      <li><a href="#lettre-aout">Lettre d'Août </a></li>
+      <li><a href="#lettre-septembre">Lettre de Septembre </a></li>
     </ul>
 
     <footer>
@@ -507,13 +511,8 @@
     <!-- ============ PIED DE PAGE ============ -->
     <tr>
       <td align="center" class="px-mobile" style="padding: 6px 30px 28px 30px;">
-        <p class="serif-body" style="margin:0 0 8px 0; font-size:12px; color:#4a4a4a;">
+        <p class="serif-body" style="margin:0; font-size:12px; color:#4a4a4a;">
           Écrit par Victor.
-        </p>
-        <p class="serif-body" style="margin:0; font-size:11px; color:#7a7a7a;">
-          Vous êtes abonné·e à cette newsletter. Si vous voulez vous désinscrire, cliquez sur le lien ci-dessous.
-          <br>
-          <a href="{{ unsubscribe }}" style="color:#7a7a7a; text-decoration:underline;">Se désinscrire</a>
         </p>
       </td>
     </tr>
@@ -812,13 +811,8 @@
     <!-- ============ PIED DE PAGE ============ -->
     <tr>
       <td align="center" class="px-mobile" style="padding: 6px 30px 28px 30px;">
-        <p class="serif-body" style="margin:0 0 8px 0; font-size:12px; color:#4a4a4a;">
+        <p class="serif-body" style="margin:0; font-size:12px; color:#4a4a4a;">
           Écrit par Victor.
-        </p>
-        <p class="serif-body" style="margin:0; font-size:11px; color:#7a7a7a;">
-          Vous êtes abonné·e à cette newsletter. Si vous voulez vous désinscrire, cliquez sur le lien ci-dessous.
-          <br>
-          <a href="{{ unsubscribe }}" style="color:#7a7a7a; text-decoration:underline;">Se désinscrire</a>
         </p>
       </td>
     </tr>
@@ -961,10 +955,10 @@
               </table>
 
               <p class="serif-body" style="margin:0 0 10px 0; font-size:13px; line-height:1.5; color:#666666; text-align:center; font-style:italic;">
-                Quelques chiffres (population et superficie précises, PIB estimé à partir des anciennes régions, à prendre avec des pincettes)
+                Quelques chiffres (population et superficie précises, PIB estimé à partir des anciennes régions)
               </p>
               <table role="presentation" class="stat-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 20px 0; border-top: 2px solid #1a1a1a;">
-                <tr style="background-color:#f4f1ea;">
+                <tr style="background-color:#fffd84;">
                   <td style="font-weight:700;">Région</td>
                   <td style="font-weight:700;" align="right">Population</td>
                   <td style="font-weight:700;" align="right">Superficie</td>
@@ -1150,13 +1144,8 @@
     <!-- ============ PIED DE PAGE ============ -->
     <tr>
       <td align="center" class="px-mobile" style="padding: 6px 30px 28px 30px;">
-        <p class="serif-body" style="margin:0 0 8px 0; font-size:12px; color:#4a4a4a;">
+        <p class="serif-body" style="margin:0; font-size:12px; color:#4a4a4a;">
           Écrit par Victor.
-        </p>
-        <p class="serif-body" style="margin:0; font-size:11px; color:#7a7a7a;">
-          Vous êtes abonné·e à cette newsletter. Si vous voulez vous désinscrire, cliquez sur le lien ci-dessous.
-          <br>
-          <a href="{{ unsubscribe }}" style="color:#7a7a7a; text-decoration:underline;">Se désinscrire</a>
         </p>
       </td>
     </tr>
