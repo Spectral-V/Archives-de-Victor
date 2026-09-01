@@ -13,12 +13,14 @@
     padding: 0;
     background-color: #ffffff;
     font-family: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
   }
 
   .page {
     max-width: 600px;
     margin: 0 auto;
     padding: 24px 30px 60px 30px;
+    box-sizing: border-box;
   }
 
   .bandeau {
@@ -40,6 +42,12 @@
     margin: 26px 0 6px 0;
     padding-bottom: 18px;
     border-bottom: 4px solid #1a1a1a;
+  }
+
+  @media screen and (max-width: 480px) {
+    .page { padding: 18px 18px 40px 18px; }
+    h1 { font-size: 30px; }
+    .bandeau { font-size: 9.5px; }
   }
 
   .subtitle {
@@ -148,6 +156,27 @@
     color: #fff;
   }
 
+  @media screen and (max-width: 480px) {
+    .reader {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+      padding-top: 16px;
+    }
+    .reader-panel {
+      width: 92vw;
+      max-height: 78vh;
+      padding: 22px 18px 30px 18px;
+    }
+    .reader-close {
+      align-self: center;
+      order: -1;
+      margin-top: 0;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
   .reader h2 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 26px;
@@ -174,6 +203,9 @@
   .reader-panel img { max-width: 100% !important; height: auto; }
   .reader-panel .crop-frame, .reader-panel .crop-frame img { width: 110px !important; height: 110px !important; }
   .reader-panel td[width="110"] { width: 110px !important; }
+  .reader-panel .stack-col { display: block !important; width: 100% !important; }
+  .reader-panel .col-pad-right { padding-right: 0 !important; padding-bottom: 14px !important; }
+  .reader-panel .px-mobile { padding-left: 18px !important; padding-right: 18px !important; }
 </style>
 </head>
 <body>
