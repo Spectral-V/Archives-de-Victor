@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les Archives de Victor</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjEwIiBmaWxsPSIjMWExYTFhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsICdUaW1lcyBOZXcgUm9tYW4nLCBzZXJpZiIgZm9udC1zaXplPSIzOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VjwvdGV4dD4KPC9zdmc+Cg==">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 
 </head>
 <body>
@@ -177,15 +177,15 @@
 
     <ul class="archives">
       <li>
-        <a href="#lettre-juillet" class="lire">Lettre de Juillet — by Victor Murris</a>
+        <a href="lettres/juillet26.html?lecteur" data-panneau="#lettre-juillet" class="lire">Lettre de Juillet — by Victor Murris</a>
         <a href="lettres/pdf/Lettres-Victorieuses-juillet26.pdf" download class="telecharger" title="Télécharger la lettre de juillet" aria-label="Télécharger la lettre de juillet">↓</a>
       </li>
       <li>
-        <a href="#lettre-aout" class="lire">Lettre d'Août — by Victor Murris</a>
+        <a href="lettres/aout26.html?lecteur" data-panneau="#lettre-aout" class="lire">Lettre d'Août — by Victor Murris</a>
         <a href="lettres/pdf/Lettres-Victorieuses-aout26.pdf" download class="telecharger" title="Télécharger la lettre d'août" aria-label="Télécharger la lettre d'août">↓</a>
       </li>
       <li>
-        <a href="#lettre-septembre" class="lire">Lettre de Septembre — by Victor Murris</a>
+        <a href="lettres/septembre26.html?lecteur" data-panneau="#lettre-septembre" class="lire">Lettre de Septembre — by Victor Murris</a>
         <a href="lettres/pdf/Lettres-Victorieuses-septembre26.pdf" download class="telecharger" title="Télécharger la lettre de septembre" aria-label="Télécharger la lettre de septembre">↓</a>
       </li>
     </ul>
@@ -230,15 +230,15 @@
   </div>
 
   <script>
-    // Sur téléphone, la lettre s'ouvre comme une vraie page plutôt que dans le
-    // panneau : Safari sur iPhone fait mal défiler les iframes dans un panneau fixe.
+    // Par défaut, chaque lien ouvre la lettre en pleine page (marche partout,
+    // notamment Safari sur iPhone). Sur ordinateur avec une souris, on ouvre
+    // plutôt la lettre dans le panneau par-dessus le collage.
     document.querySelectorAll('a.lire').forEach(function (lien) {
       lien.addEventListener('click', function (e) {
-        if (!window.matchMedia('(max-width: 600px), (pointer: coarse)').matches) return;
-        var iframe = document.querySelector(lien.getAttribute('href') + ' iframe');
-        if (!iframe) return;
+        var ordinateur = window.matchMedia('(min-width: 601px) and (hover: hover) and (pointer: fine)').matches;
+        if (!ordinateur) return;
         e.preventDefault();
-        window.location.href = iframe.getAttribute('src') + '?lecteur';
+        window.location.hash = lien.getAttribute('data-panneau');
       });
     });
   </script>
