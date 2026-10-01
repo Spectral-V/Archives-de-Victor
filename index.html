@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les Archives de Victor</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjEwIiBmaWxsPSIjMWExYTFhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsICdUaW1lcyBOZXcgUm9tYW4nLCBzZXJpZiIgZm9udC1zaXplPSIzOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VjwvdGV4dD4KPC9zdmc+Cg==">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=6">
 
 </head>
 <body>
@@ -196,6 +196,45 @@
 
   </div>
 
+  <!-- ===== Inscription à la newsletter (formulaire Brevo) ===== -->
+  <div class="page inscription" id="inscription">
+    <h2>Recevoir les prochaines lettres</h2>
+    <p class="inscription-intro">Une lettre par mois, directement dans ta boîte mail.</p>
+
+    <!-- Formulaire Brevo « Site archives » (Contacts → Formulaires → Partager → HTML) -->
+    <form class="inscription-form" method="POST" action="https://fc2f12d0.sibforms.com/serve/MUIFALeOe3Vvh7fs1ULeOVY6jK9IN40F4CYTV-dwQSHn_PEXgSuU7KoE3W45SShs581i3-CjD345kY9oSdvGOda_8doES291firj_3xjFfNpOKJzSO_kKH88eEV4em0O3C0p04maYDCINXg3JbddFIUWQzER-tBXsOLgrEfYovhynpbkJi2xR32uIrfHjB2nl9Xa3DJwy91TxscCXg==">
+      <label for="EMAIL" class="inscription-label">Adresse e-mail</label>
+      <div class="inscription-ligne">
+        <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" placeholder="prenom@exemple.fr" required>
+        <button type="submit">S'inscrire</button>
+      </div>
+
+      <label class="inscription-consentement">
+        <input type="checkbox" required>
+        <span>J'accepte de recevoir la newsletter mensuelle « Lettres Victorieuses » par e-mail. Je peux me désinscrire à tout moment grâce au lien présent dans chaque lettre.</span>
+      </label>
+
+      <!-- Champs techniques de Brevo (anti-robots et langue) -->
+      <input type="text" name="email_address_check" value="" class="cache" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="locale" value="fr">
+
+      <p class="inscription-rgpd">
+        Seule ton adresse e-mail est collectée (obligatoire), uniquement pour t'envoyer la newsletter et mesurer son ouverture.
+        Elle est gérée par Victor Murris, hébergée chez Brevo (prestataire d'envoi, données stockées dans l'Union européenne)
+        et conservée jusqu'à ta désinscription. Tu peux accéder à tes données, les rectifier ou les supprimer à tout moment.
+        <a href="confidentialite.html">Politique de confidentialité</a>.
+      </p>
+
+      <p class="inscription-merci" role="status" hidden>
+        Merci ! Un e-mail de confirmation vient de t'être envoyé : clique sur le lien qu'il contient pour valider ton inscription.
+      </p>
+      <p class="inscription-erreur" role="alert" hidden>
+        Oups, l'inscription n'a pas fonctionné. Réessaie dans un instant, ou écris à
+        <a href="mailto:newsletter@lettresvictorieuses.fr">newsletter@lettresvictorieuses.fr</a>.
+      </p>
+    </form>
+  </div>
+
   <!-- ===== Panneau Lettre de Juillet ===== -->
   <div class="reader" id="lettre-juillet">
     <div class="reader-actions">
@@ -240,6 +279,40 @@
         e.preventDefault();
         window.location.hash = lien.getAttribute('data-panneau');
       });
+    });
+  </script>
+
+  <script>
+    // Envoi de l'inscription à Brevo en arrière-plan, puis affichage du résultat.
+    // Sans JavaScript, le formulaire s'envoie quand même normalement à Brevo.
+    var formulaire = document.querySelector('.inscription-form');
+    var bouton = formulaire.querySelector('button');
+    var merci = formulaire.querySelector('.inscription-merci');
+    var erreur = formulaire.querySelector('.inscription-erreur');
+
+    formulaire.addEventListener('submit', function (e) {
+      e.preventDefault();
+      bouton.disabled = true;
+      bouton.textContent = 'Envoi…';
+      merci.hidden = true;
+      erreur.hidden = true;
+
+      fetch(formulaire.action + '?isAjax=1', {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(formulaire))
+      })
+        .then(function (reponse) { return reponse.json(); })
+        .then(function (resultat) {
+          if (!resultat.success) throw new Error('refus');
+          merci.hidden = false;
+          formulaire.querySelector('.inscription-ligne').hidden = true;
+          formulaire.querySelector('.inscription-consentement').hidden = true;
+        })
+        .catch(function () {
+          erreur.hidden = false;
+          bouton.disabled = false;
+          bouton.textContent = "S'inscrire";
+        });
     });
   </script>
 
