@@ -146,10 +146,13 @@
     visibility: visible;
   }
 
-  /* La page derrière ne défile plus quand une lettre est ouverte */
-  html:has(.reader:target),
-  body:has(.reader:target) {
-    overflow: hidden;
+  /* La page derrière ne défile plus quand une lettre est ouverte
+     (ordinateur seulement : sur téléphone la lettre s'ouvre en pleine page) */
+  @media (hover: hover) and (pointer: fine) {
+    html:has(.reader:target),
+    body:has(.reader:target) {
+      overflow: hidden;
+    }
   }
 
   .reader-panel {

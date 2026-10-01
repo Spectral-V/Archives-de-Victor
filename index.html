@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les Archives de Victor</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjEwIiBmaWxsPSIjMWExYTFhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsICdUaW1lcyBOZXcgUm9tYW4nLCBzZXJpZiIgZm9udC1zaXplPSIzOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VjwvdGV4dD4KPC9zdmc+Cg==">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=3">
 
 </head>
 <body>
@@ -234,7 +234,7 @@
     // panneau : Safari sur iPhone fait mal défiler les iframes dans un panneau fixe.
     document.querySelectorAll('a.lire').forEach(function (lien) {
       lien.addEventListener('click', function (e) {
-        if (!window.matchMedia('(max-width: 600px)').matches) return;
+        if (!window.matchMedia('(max-width: 600px), (pointer: coarse)').matches) return;
         var iframe = document.querySelector(lien.getAttribute('href') + ' iframe');
         if (!iframe) return;
         e.preventDefault();
