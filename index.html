@@ -229,5 +229,19 @@
     </div>
   </div>
 
+  <script>
+    // Sur téléphone, la lettre s'ouvre comme une vraie page plutôt que dans le
+    // panneau : Safari sur iPhone fait mal défiler les iframes dans un panneau fixe.
+    document.querySelectorAll('a.lire').forEach(function (lien) {
+      lien.addEventListener('click', function (e) {
+        if (!window.matchMedia('(max-width: 600px)').matches) return;
+        var iframe = document.querySelector(lien.getAttribute('href') + ' iframe');
+        if (!iframe) return;
+        e.preventDefault();
+        window.location.href = iframe.getAttribute('src') + '?lecteur';
+      });
+    });
+  </script>
+
 </body>
 </html>

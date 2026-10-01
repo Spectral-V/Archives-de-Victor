@@ -54,6 +54,15 @@
 </style>
 </head>
 <body style="margin:0; padding:0; background-color:#ffffff;">
+
+<!-- Barre de lecture (site seulement, affichée quand la lettre est ouverte depuis les archives sur téléphone) -->
+<div id="barre-lecteur" style="display:none; position:sticky; top:0; z-index:10; justify-content:space-between; align-items:center; padding:10px 14px; background:#ffffff; border-bottom:1px solid #1a1a1a;">
+  <a href="../index.html" aria-label="Fermer" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:1px solid #8a1f1f; border-radius:50%; color:#8a1f1f; text-decoration:none; font-size:16px;">✕</a>
+  <a href="pdf/Lettres-Victorieuses-juillet26.pdf" download aria-label="Télécharger en PDF" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:1px solid #1a1a1a; border-radius:50%; color:#1a1a1a; text-decoration:none; font-size:16px;">↓</a>
+</div>
+<script>
+  if (location.search.indexOf('lecteur') !== -1) document.getElementById('barre-lecteur').style.display = 'flex';
+</script>
 <!-- Texte de prévisualisation -->
 <div style="display:none; max-height:0px; overflow:hidden;">
   Le numéro du mois : une chanson, une expo, une lecture &nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌
