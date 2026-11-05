@@ -2,9 +2,11 @@
 
 À relancer après avoir ajouté une nouvelle lettre :
     pip install playwright && playwright install chromium
-    python3 scripts/generer-pdf.py
+    python3 scripts/generer-pdf.py              # toutes les lettres
+    python3 scripts/generer-pdf.py novembre26   # seulement certaines
 """
 
+import sys
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -21,7 +23,9 @@ def main():
         page = navigateur.new_page()
         # Rendu "écran" (et non "impression") pour garder l'allure de la lettre
         page.emulate_media(media="screen")
-        for lettre in sorted(LETTRES.glob("*.html")):
+        choix = sys.argv[1:]
+        lettres = [l for l in sorted(LETTRES.glob("*.html")) if not choix or l.stem in choix]
+        for lettre in lettres:
             page.goto(lettre.as_uri(), wait_until="networkidle")
             page.evaluate("document.fonts.ready")
             pdf = SORTIE / f"Lettres-Victorieuses-{lettre.stem}.pdf"
